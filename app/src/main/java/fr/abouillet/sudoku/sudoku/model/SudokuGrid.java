@@ -1,5 +1,6 @@
 package fr.abouillet.sudoku.sudoku.model;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -23,7 +24,6 @@ import fr.abouillet.sudoku.sudoku.R;
 public class SudokuGrid extends View {
 
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
-
     private float gridWidth;
     private float gridSeparatorSize;
     private float cellWidth;
@@ -33,6 +33,7 @@ public class SudokuGrid extends View {
     private Paint blackPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private int level = GameActivity.level;
     private int grid = GameActivity.grid;
+    private GameActivity gameActivity;
 
     private int[][] board;
 
@@ -40,10 +41,12 @@ public class SudokuGrid extends View {
 
     public SudokuGrid(Context context) {
         this(context, null);
+        gameActivity = (GameActivity) context;
     }
 
     public SudokuGrid(Context context, AttributeSet attrs) {
         super(context, attrs);
+        gameActivity = (GameActivity) context;
     }
 
     @Override
@@ -60,11 +63,11 @@ public class SudokuGrid extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        blackPaint.setTextSize(150);
+        blackPaint.setTextSize(125);
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
                 if(!(board[i][j] == 0)){
-                    canvas.drawText(String.valueOf(board[i][j]), (j) * cellWidth + 25, (i + 1) * cellWidth - 25, blackPaint);
+                    canvas.drawText(String.valueOf(board[i][j]), (j) * cellWidth + 25, (i + 1) * cellWidth -10, blackPaint);
                 }else{
                     disableCaseList.add(new Point(i, j));
                 }
@@ -90,9 +93,15 @@ public class SudokuGrid extends View {
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
             int column = (int)(event.getX() / cellWidth);
             int row = (int)(event.getY() / cellWidth);
+            int value = gameActivity.getValue();
 
+            Log.d("VALUE:", String.valueOf(gameActivity.getValue()));
             if(!disableCaseList.contains(new Point(row, column))){
 
+            }
+            else if (value != 0) {
+                Log.d("VALUE:", String.valueOf(gameActivity.getValue()));
+                board[row][column] = value;
             }
 
             invalidate();
