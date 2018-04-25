@@ -24,18 +24,18 @@ import fr.abouillet.sudoku.sudoku.R;
 public class SudokuGrid extends View {
 
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+
     private float gridWidth;
     private float gridSeparatorSize;
     private float cellWidth;
-    private float cellHeight;
     private float gridHeight;
 
     private Paint blackPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-    private int level = GameActivity.level;
-    private int grid = GameActivity.grid;
     private GameActivity gameActivity;
 
     private int[][] board;
+    private int level = GameActivity.level;
+    private int grid = GameActivity.grid;
 
     private List<Point> disableCaseList = new ArrayList();
 
@@ -55,7 +55,6 @@ public class SudokuGrid extends View {
         gridSeparatorSize = (w / 9f) / 20f;
         gridHeight = h;
         gridWidth = w;
-        cellHeight = gridHeight /9f;
         cellWidth = gridWidth / 9f;
         board = this.getSudokuGrid(level, grid);
         blackPaint.setColor(Color.BLACK);
@@ -148,6 +147,10 @@ public class SudokuGrid extends View {
         } catch (IOException e) {
             e.printStackTrace();
         } return ligne;
+    }
+
+    public int[][] getBoard() {
+        return board;
     }
 
 }
