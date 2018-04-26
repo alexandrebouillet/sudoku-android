@@ -12,21 +12,25 @@ import android.widget.TextView;
 import fr.abouillet.sudoku.sudoku.model.SudokuGrid;
 
 public class GameActivity extends AppCompatActivity {
-    public static int grid;
-    public static int level;
+   public static int level;
+   public static int grid;
 
     private int value = 0;
     private SudokuGrid sudokuGrid;
     private Button checkButton;
+    private TextView validText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
-        final int grid = this.getIntent().getIntExtra("grid", 0);
-        int level = this.getIntent().getIntExtra("level", 1);
+        grid = getIntent().getIntExtra("grid", 0);
+        level = getIntent().getIntExtra("level", 1);
+        Log.d("GRID:", String.valueOf(grid));
+        Log.d("LEVEL:", String.valueOf(level));
         sudokuGrid = findViewById(R.id.sudoku);
         checkButton = findViewById(R.id.check);
+        validText = findViewById(R.id.validText);
 
         for(int i = 1 ; i <= 9 ; i++) {
             TextView tv = findViewById(this.getResources().getIdentifier("tv" + i, "id", getPackageName()));
@@ -38,7 +42,13 @@ public class GameActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 boolean gridValid = gridChecker(sudokuGrid.getBoard());
-                Log.d("VALID", String.valueOf(gridValid));
+                if(gridValid){
+                    validText.setTextColor(Color.GREEN);
+                    validText.setText("Vous avez gagné !");
+                }else{
+                    validText.setTextColor(Color.RED);
+                    validText.setText("Perdu ! Encore un petit effort !");
+                }
             }
         });
 
@@ -94,4 +104,5 @@ public class GameActivity extends AppCompatActivity {
     public void setValue(int value) {
         this.value = value;
     }
+
 }

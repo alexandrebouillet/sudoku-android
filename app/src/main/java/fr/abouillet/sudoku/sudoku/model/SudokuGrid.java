@@ -65,7 +65,6 @@ public class SudokuGrid extends View {
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
                 if(!(board[i][j] == 0)){
-                    Log.d("PASSE PAR ICI", String.valueOf(board[i][j]));
                     canvas.drawText(String.valueOf(board[i][j]), (j) * cellWidth + 25, (i + 1) * cellWidth -10, blackPaint);
                 }else{
                     enableCaseList.add(new Point(i, j));
@@ -78,7 +77,6 @@ public class SudokuGrid extends View {
                     } else {
                         paintTester.setColor(Color.RED);
                     }
-
                     canvas.drawText(String.valueOf(board[i][j]), (j) * cellWidth + 25, (i + 1) * cellWidth -10, paintTester);
                 }
 
@@ -106,12 +104,10 @@ public class SudokuGrid extends View {
             int row = (int)(event.getY() / cellWidth);
             int value = gameActivity.getValue();
 
-            Log.d("VALUE:", String.valueOf(gameActivity.getValue()));
             if(!enableCaseList.contains(new Point(row, column))){
 
             }
             else if (value != 0) {
-                Log.d("VALUE:", String.valueOf(gameActivity.getValue()));
                 board[row][column] = value;
             }
 
