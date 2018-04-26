@@ -61,7 +61,7 @@ public class GameActivity extends AppCompatActivity {
         }
     };
 
-    public static boolean gridChecker(int[][] grid) {
+    public boolean gridChecker(int[][] grid) {
         for (int i = 0; i < 9; i++)
             for (int j = 0; j < 9; j++)
                 if (grid[i][j] < 1 || grid[i][j] > 9
@@ -70,7 +70,7 @@ public class GameActivity extends AppCompatActivity {
         return true;
     }
 
-    public static boolean cellChecker(int i, int j, int[][] grid) {
+    public boolean cellChecker(int i, int j, int[][] grid) {
         for (int column = 0; column < 9; column++)
             if (column != j && grid[i][column] == grid[i][j])
                 return false;

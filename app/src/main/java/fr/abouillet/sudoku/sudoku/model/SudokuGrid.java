@@ -37,7 +37,7 @@ public class SudokuGrid extends View {
     private int level = GameActivity.level;
     private int grid = GameActivity.grid;
 
-    private List<Point> disableCaseList = new ArrayList();
+    private List<Point> enableCaseList = new ArrayList();
 
     public SudokuGrid(Context context) {
         this(context, null);
@@ -57,7 +57,6 @@ public class SudokuGrid extends View {
         gridWidth = w;
         cellWidth = gridWidth / 9f;
         board = this.getSudokuGrid(level, grid);
-        blackPaint.setColor(Color.BLACK);
     }
 
     @Override
@@ -66,10 +65,23 @@ public class SudokuGrid extends View {
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
                 if(!(board[i][j] == 0)){
+                    Log.d("PASSE PAR ICI", String.valueOf(board[i][j]));
                     canvas.drawText(String.valueOf(board[i][j]), (j) * cellWidth + 25, (i + 1) * cellWidth -10, blackPaint);
                 }else{
-                    disableCaseList.add(new Point(i, j));
+                    enableCaseList.add(new Point(i, j));
                 }
+                if(!(board[i][j] == 0) && enableCaseList.contains(new Point(i,j))){
+                    Paint paintTester = new Paint(Paint.ANTI_ALIAS_FLAG);
+                    paintTester.setTextSize(125);
+                    if (gameActivity.cellChecker(i, j, board)) {
+                        paintTester.setColor(Color.GREEN);
+                    } else {
+                        paintTester.setColor(Color.RED);
+                    }
+
+                    canvas.drawText(String.valueOf(board[i][j]), (j) * cellWidth + 25, (i + 1) * cellWidth -10, paintTester);
+                }
+
             }
         }
 
@@ -95,7 +107,7 @@ public class SudokuGrid extends View {
             int value = gameActivity.getValue();
 
             Log.d("VALUE:", String.valueOf(gameActivity.getValue()));
-            if(!disableCaseList.contains(new Point(row, column))){
+            if(!enableCaseList.contains(new Point(row, column))){
 
             }
             else if (value != 0) {
