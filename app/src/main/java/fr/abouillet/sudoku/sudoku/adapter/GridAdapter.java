@@ -1,4 +1,4 @@
-package fr.abouillet.sudoku.sudoku.Adapter;
+package fr.abouillet.sudoku.sudoku.adapter;
 
 import android.content.Context;
 import android.graphics.Color;

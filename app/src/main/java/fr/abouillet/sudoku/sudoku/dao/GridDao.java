@@ -1,7 +1,6 @@
 package fr.abouillet.sudoku.sudoku.dao;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import fr.abouillet.sudoku.sudoku.model.Grid;
 

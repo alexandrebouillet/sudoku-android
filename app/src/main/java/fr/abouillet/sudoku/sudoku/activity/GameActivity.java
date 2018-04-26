@@ -1,6 +1,5 @@
-package fr.abouillet.sudoku.sudoku;
+package fr.abouillet.sudoku.sudoku.activity;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,7 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import fr.abouillet.sudoku.sudoku.model.SudokuGrid;
+import fr.abouillet.sudoku.sudoku.R;
+import fr.abouillet.sudoku.sudoku.view.SudokuGrid;
 
 public class GameActivity extends AppCompatActivity {
    public static int level;

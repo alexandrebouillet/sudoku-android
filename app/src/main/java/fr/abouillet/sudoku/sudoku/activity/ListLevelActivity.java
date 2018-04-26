@@ -1,20 +1,16 @@
-package fr.abouillet.sudoku.sudoku;
+package fr.abouillet.sudoku.sudoku.activity;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
-import fr.abouillet.sudoku.sudoku.Adapter.GridAdapter;
+import fr.abouillet.sudoku.sudoku.adapter.GridAdapter;
+import fr.abouillet.sudoku.sudoku.R;
 import fr.abouillet.sudoku.sudoku.dao.GridDao;
-import fr.abouillet.sudoku.sudoku.model.Grid;
 
 public class ListLevelActivity extends AppCompatActivity {
 

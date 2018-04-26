@@ -1,13 +1,11 @@
-package fr.abouillet.sudoku.sudoku.model;
+package fr.abouillet.sudoku.sudoku.view;
 
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -18,7 +16,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.abouillet.sudoku.sudoku.GameActivity;
+import fr.abouillet.sudoku.sudoku.activity.GameActivity;
 import fr.abouillet.sudoku.sudoku.R;
 
 public class SudokuGrid extends View {
@@ -28,7 +26,6 @@ public class SudokuGrid extends View {
     private float gridWidth;
     private float gridSeparatorSize;
     private float cellWidth;
-    private float gridHeight;
 
     private Paint blackPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private GameActivity gameActivity;
@@ -53,7 +50,6 @@ public class SudokuGrid extends View {
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
         gridSeparatorSize = (w / 9f) / 20f;
-        gridHeight = h;
         gridWidth = w;
         cellWidth = gridWidth / 9f;
         board = this.getSudokuGrid(level, grid);
@@ -99,6 +95,7 @@ public class SudokuGrid extends View {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
             int column = (int)(event.getX() / cellWidth);
             int row = (int)(event.getY() / cellWidth);

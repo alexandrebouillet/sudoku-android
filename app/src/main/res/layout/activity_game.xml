@@ -25,7 +25,7 @@
         app:layout_constraintVertical_bias="0.0">
 
 
-        <fr.abouillet.sudoku.sudoku.model.SudokuGrid
+        <fr.abouillet.sudoku.sudoku.view.SudokuGrid
             android:id="@+id/sudoku"
             android:layout_width="match_parent"
             android:layout_height="408dp" />
