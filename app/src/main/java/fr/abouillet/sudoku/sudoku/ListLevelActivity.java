@@ -12,12 +12,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import fr.abouillet.sudoku.sudoku.Adapter.GridAdapter;
 import fr.abouillet.sudoku.sudoku.dao.GridDao;
+import fr.abouillet.sudoku.sudoku.model.Grid;
 
 public class ListLevelActivity extends AppCompatActivity {
 
   GridDao gridDao = new GridDao();
-  ArrayAdapter<String> adapter;
+  GridAdapter adapter;
   public int level;
 
 
@@ -29,7 +31,7 @@ public class ListLevelActivity extends AppCompatActivity {
     level = getIntent().getIntExtra("level", 1);
     ListView  lv = (ListView) findViewById(R.id.lv);
 
-    adapter=new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, gridDao.getListGridByLevel(level));
+    adapter= new GridAdapter(this, gridDao.getListGridByLevel(level));
 
     lv.setAdapter(adapter);
 

@@ -6,9 +6,14 @@ public class Grid implements Serializable {
 
     private String name;
 
-    private String grid;
+    private int grid;
 
-    public Grid() {
+    private int completePourcent;
+
+    public Grid(String name, int grid) {
+        this.name = name;
+        this.grid = grid;
+        this.completePourcent = (int) ((Math.random())*100);
 
     }
 
@@ -20,11 +25,19 @@ public class Grid implements Serializable {
         this.name = name;
     }
 
-    public String getGrid() {
+    public int getGrid() {
         return grid;
     }
 
-    public void setGrid(String grid) {
+    public void setGrid(int grid) {
         this.grid = grid;
+    }
+
+    public int getCompletePourcent() {
+        return completePourcent;
+    }
+
+    public void setCompletePourcent(int completePourcent) {
+        this.completePourcent = completePourcent;
     }
 }
